@@ -2,7 +2,7 @@
 
 namespace Centire\DiskMonitor;
 
-use Centire\DiskMonitor\Commands\RecordDiskMetrics;
+use Centire\DiskMonitor\Commands\RecordDiskMetricsCommand;
 use Illuminate\Support\ServiceProvider;
 
 class DiskMonitorServiceProvider extends ServiceProvider
@@ -25,7 +25,7 @@ class DiskMonitorServiceProvider extends ServiceProvider
             }
 
             $this->commands([
-                RecordDiskMetrics::class,
+                RecordDiskMetricsCommand::class,
             ]);
         }
 
