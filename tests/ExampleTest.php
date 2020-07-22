@@ -1,6 +1,6 @@
 <?php
 
-namespace Centire\LaravelDiskMonitor\Tests;
+namespace Centire\DiskMonitor\Tests;
 
 class ExampleTest extends TestCase
 {

@@ -1,17 +1,17 @@
 {
-    "name": "spatie/laravel-disk-monitor",
+    "name": "centire/laravel-disk-monitor",
     "description": "Monitor metrics in Laravel disks",
     "keywords": [
-        "spatie",
+        "centire",
         "laravel-disk-monitor"
     ],
-    "homepage": "https://github.com/spatie/laravel-disk-monitor",
+    "homepage": "https://github.com/centire/laravel-disk-monitor",
     "license": "MIT",
     "authors": [
         {
             "name": "Nivesh Saharan",
             "email": "hey@nive.sh",
-            "homepage": "https://spatie.be",
+            "homepage": "https://centire.in",
             "role": "Developer"
         }
     ],
@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Centire\\LaravelDiskMonitor\\": "src"
+            "Centire\\DiskMonitor\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Centire\\LaravelDiskMonitor\\Tests\\": "tests"
+            "Centire\\DiskMonitor\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -47,11 +47,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Centire\\LaravelDiskMonitor\\LaravelDiskMonitorServiceProvider"
-            ],
-            "aliases": {
-                "LaravelDiskMonitor": "Centire\\LaravelDiskMonitor\\LaravelDiskMonitorFacade"
-            }
+                "DiskMonitorServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",

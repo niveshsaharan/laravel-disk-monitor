@@ -1,9 +1,9 @@
 <?php
 
-namespace Centire\LaravelDiskMonitor\Tests;
+namespace Centire\DiskMonitor\Tests;
 
+use Centire\DiskMonitor\DiskMonitorServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Centire\LaravelDiskMonitor\LaravelDiskMonitorServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -17,7 +17,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            LaravelDiskMonitorServiceProvider::class,
+            DiskMonitorServiceProvider::class,
         ];
     }
 
@@ -30,9 +30,8 @@ class TestCase extends Orchestra
             'prefix' => '',
         ]);
 
-        /*
-        include_once __DIR__.'/../database/migrations/create_laravel_disk_monitor_table.php.stub';
-        (new \CreatePackageTable())->up();
-        */
+
+        include_once __DIR__.'/../database/migrations/create_disk_monitor_tables.php.stub';
+        (new \CreateDiskMonitorTables())->up();
     }
 }
