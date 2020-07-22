@@ -13,6 +13,10 @@ class DiskMonitorEntry extends Model
 {
     public $guarded = [];
 
+    public $casts = [
+        'file_count' => 'integer',
+    ];
+
     protected static function last(): ?self
     {
         return static::orderByDesc('id')->first();
