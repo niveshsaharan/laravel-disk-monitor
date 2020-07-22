@@ -17,13 +17,13 @@ composer require centire/laravel-disk-monitor
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --provider="Spatie\DiskMonitor\DiskMonitorServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="Centire\DiskMonitor\DiskMonitorServiceProvider" --tag="migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="Spatie\DiskMonitor\DiskMonitorServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Centire\DiskMonitor\DiskMonitorServiceProvider" --tag="config"
 ```
 
 This is the contents of the published config file:
@@ -39,12 +39,12 @@ return [
 ];
 ```
 
-Finally, you should schedule the `Spatie\DiskMonitor\Commands\RecordsDiskMetricsCommand` to run daily.
+Finally, you should schedule the `Centire\DiskMonitor\Commands\RecordsDiskMetricsCommand` to run daily.
 
 ```php
 // in app/Console/Kernel.php
 
-use \Spatie\DiskMonitor\Commands\RecordsDiskMetricsCommand;
+use \Centire\DiskMonitor\Commands\RecordsDiskMetricsCommand;
 
 class Kernel extends ConsoleKernel
 {
