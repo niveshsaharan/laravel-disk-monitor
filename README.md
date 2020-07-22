@@ -1,7 +1,7 @@
 # Monitor metrics of Laravel disks
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/centire/laravel-disk-monitor.svg?style=flat-square)](https://packagist.org/packages/centire/laravel-disk-monitor)
-![run-tests](https://github.com/centire/laravel-disk-monitor/workflows/run-tests/badge.svg)
+![run-tests](https://github.com/niveshsaharan/laravel-disk-monitor/workflows/Tests/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/centire/laravel-disk-monitor.svg?style=flat-square)](https://packagist.org/packages/centire/laravel-disk-monitor)
 
 laravel-disk-monitor can monitor the usage of the filesystems configured in Laravel. Currently only the amount of files a disk contains is monitored.
