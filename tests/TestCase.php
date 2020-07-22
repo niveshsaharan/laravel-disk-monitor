@@ -3,6 +3,8 @@
 namespace Centire\DiskMonitor\Tests;
 
 use Centire\DiskMonitor\DiskMonitorServiceProvider;
+use CreateDiskMonitorTables;
+use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -12,6 +14,8 @@ class TestCase extends Orchestra
         parent::setUp();
 
         $this->withFactories(__DIR__.'/database/factories');
+
+        Route::diskMonitor('disk-monitor');
     }
 
     protected function getPackageProviders($app)
@@ -32,6 +36,6 @@ class TestCase extends Orchestra
 
 
         include_once __DIR__.'/../database/migrations/create_disk_monitor_tables.php.stub';
-        (new \CreateDiskMonitorTables())->up();
+        (new CreateDiskMonitorTables())->up();
     }
 }
