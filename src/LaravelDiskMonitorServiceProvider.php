@@ -2,8 +2,8 @@
 
 namespace Centire\LaravelDiskMonitor;
 
-use Illuminate\Support\ServiceProvider;
 use Centire\LaravelDiskMonitor\Commands\LaravelDiskMonitorCommand;
+use Illuminate\Support\ServiceProvider;
 
 class LaravelDiskMonitorServiceProvider extends ServiceProvider
 {
