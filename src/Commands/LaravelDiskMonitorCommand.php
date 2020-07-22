@@ -1,12 +1,12 @@
 <?php
 
-namespace Spatie\Skeleton\Commands;
+namespace Centire\LaravelDiskMonitor\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelDiskMonitorCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-disk-monitor';
 
     public $description = 'My command';
 

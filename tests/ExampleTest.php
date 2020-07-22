@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\Skeleton\Tests;
+namespace Centire\LaravelDiskMonitor\Tests;
 
 class ExampleTest extends TestCase
 {

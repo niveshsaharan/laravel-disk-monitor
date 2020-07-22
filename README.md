@@ -1,56 +1,75 @@
-# :package_description
+# Monitor metrics of Laravel disks
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/spatie/:package_name)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/:package_name/run-tests?label=tests)](https://github.com/spatie/:package_name/actions?query=workflow%3Arun-tests+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/spatie/:package_name)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/centire/laravel-disk-monitor.svg?style=flat-square)](https://packagist.org/packages/centire/laravel-disk-monitor)
+![run-tests](https://github.com/centire/laravel-disk-monitor/workflows/run-tests/badge.svg)
+[![Total Downloads](https://img.shields.io/packagist/dt/centire/laravel-disk-monitor.svg?style=flat-square)](https://packagist.org/packages/centire/laravel-disk-monitor)
 
-**Note:** Replace ```:author_name``` ```:author_username``` ```:author_email``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line. You can also run `configure-skeleton.sh` to do this automatically.
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-Learn how to create a package like this one, by watching our premium video course:
-
-[![Laravel Package training](https://spatie.be/github/package-training.jpg)](https://laravelpackage.training)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+laravel-disk-monitor can monitor the usage of the filesystems configured in Laravel. Currently only the amount of files a disk contains is monitored.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require spatie/package-skeleton-laravel
+composer require centire/laravel-disk-monitor
 ```
 
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --provider="Spatie\Skeleton\SkeletonServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="Spatie\DiskMonitor\DiskMonitorServiceProvider" --tag="migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="Spatie\Skeleton\SkeletonServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Spatie\DiskMonitor\DiskMonitorServiceProvider" --tag="config"
 ```
 
 This is the contents of the published config file:
 
 ```php
 return [
+    /*
+     * The names of the disk you want to monitor.
+     */
+    'disk_names' => [
+        'local',
+    ],
 ];
+```
+
+Finally, you should schedule the `Spatie\DiskMonitor\Commands\RecordsDiskMetricsCommand` to run daily.
+
+```php
+// in app/Console/Kernel.php
+
+use \Spatie\DiskMonitor\Commands\RecordsDiskMetricsCommand;
+
+class Kernel extends ConsoleKernel
+{
+    protected function schedule(Schedule $schedule)
+    {
+       // ...
+        $schedule->command(RecordsDiskMetricsCommand::class)->daily();
+    }
+}
+
 ```
 
 ## Usage
 
-``` php
-$skeleton = new Spatie\Skeleton();
-echo $skeleton->echoPhrase('Hello, Spatie!');
+You can view the amount of files each monitored disk has, in the `disk_monitor_entries` table.
+
+If you want to view the statistics in the browser add this macro to your routes file.
+
+```php
+// in a routes files
+
+Route::diskMonitor('my-disk-monitor-url');
 ```
+
+Now, you can see all statics when browsing `/my-disk-monitor-url`. Of course, you can use any url you want when using the `diskMonitor` route macro. We highly recommand using the `auth` middleware for this route, so guests can't see any data regarding your disks.
 
 ## Testing
 
@@ -68,12 +87,12 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email freek@spatie.be instead of using the issue tracker.
+If you discover any security related issues, please email hey@nive.sh instead of using the issue tracker.
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
-- [All Contributors](../../contributors)
+- [Freek Van der Herten](https://github.com/freekmurze)
+- [Nivesh](https://github.com/niveshsaharan)
 
 ## License
 
